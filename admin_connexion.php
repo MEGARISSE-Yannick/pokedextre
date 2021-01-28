@@ -17,6 +17,41 @@
 </head>
 
 <body>
+<nav class="navbar is-dark " role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item ">
+        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+      </a>
+
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu ">
+      <div class="navbar-start">
+        <a class="navbar-item">
+          Home
+        </a>
+
+        <a class="navbar-item">
+          Documentation
+        </a>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-danger" href="accueil.php">
+            <strong>Accueil</strong>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
     <div class="columns">
         <div class="column">
             <form action="#" method="post">
@@ -38,7 +73,7 @@
         </div>
   
 
-        <div class="column">
+        <div class="column is-7">
             <?php $bdd = new PDO('mysql:host=127.0.0.1;dbname=CRUD;charset=utf8', 'Root', 'Simplon974', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
             $reponse = $bdd->query('SELECT * FROM user');
             while ($donnees = $reponse->fetch()) {
@@ -59,9 +94,12 @@
                 echo '<img src="' . $donnees['url'] . '"> <br>';
                 echo "        </figure>\n";
                 echo "      </div>\n";
+                echo  '<br>';
                 echo '<button class="button is-success" type="submit" name="modifier">Modifier</button> ';
                 echo '<button class="button is-danger" type="submit" name="supprimer"">Relacher</button> ' . '<br/>';
                 echo '</form>';
+                echo  '<br>';
+
 
                 if (isset($_POST['modifier'])) {
                     $requete = 'UPDATE user SET 
