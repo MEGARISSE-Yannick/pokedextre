@@ -1,0 +1,21 @@
+<?php $bdd = new PDO('mysql:host=127.0.0.1;dbname=CRUD;charset=utf8', 'Root', 'Simplon974', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $reponse = $bdd->query('SELECT * FROM user');
+            while ($donnees = $reponse->fetch()) {
+                echo '<form action="#" method="post">';
+                echo '<br>';
+                echo '<input type="text"value="' . $donnees['nom'] . '" class="input is-primary" name="new_nom" placeholder="Nouveau nom">';
+                echo '<br>';
+                echo '<input type="text"value="' . $donnees['element'] . '" class="input is-primary" name="new_element" placeholder="Nouveau element">';
+                echo '<br>';
+                echo '<input type="text"value="' . $donnees['story'] . '" class="input is-primary" name="new_story" placeholder="Nouvelle histoire">';
+                echo  '<br>';
+                echo '<input type="text" value="' . $donnees['dates'] . '" class="input is-primary" name="new_dates" placeholder="Nouvelle date">';
+                echo '<input type="hidden" name="nom_id" value="' . $donnees['id'] . '">';
+                echo '<button class="button is-success" type="submit" name="modifier"">Modifier</button> ' . '<br/>';
+                echo '</form>';
+                if (isset($_POST['modifier'])) {
+                    $requete = 'UPDATE user SET nom="' . $_POST['new_nom'] . '",element="' . $_POST['new_element'] . '",story="' . $_POST['new_story'] . '",dates="' . $_POST['new_dates'] . '" WHERE id="' . $_POST['id'] . '"';
+                    $resultat = $bdd->query($requete);
+                }
+            }
+            ?>
